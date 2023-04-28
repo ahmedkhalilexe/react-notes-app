@@ -16,12 +16,6 @@ export default function Home() {
   };
   const [notes, setNotes] = useState<Array<NoteType>>([]);
   const [showAddNote, setShowAddNote] = useState<boolean>(false);
-  const emptyNote: NoteType = {
-    id: uuid(),
-    title: "title",
-    body: "",
-    modefiedAt: Date.now(),
-  };
   const addNewNote = (note: NoteType) => {
     setNotes([note, ...notes]);
   };
@@ -32,17 +26,19 @@ export default function Home() {
         {/* add edit search */}
         <div className="flex justify-end">
           <button
+            className=" text-lg font-bold"
             onClick={
               // () => setNotes([emptyNote, ...notes])
               () => setShowAddNote(true)
             }
           >
-            add
+            Create
           </button>
         </div>
         {/* notes */}
         {notes.map((note) => (
           <Note
+            key={note.id}
             id={note.id}
             title={note.title}
             modefiedAt={note.modefiedAt}
