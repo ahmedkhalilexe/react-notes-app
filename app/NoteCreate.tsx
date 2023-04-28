@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { NoteType } from "./page";
 import uuid from "react-uuid";
 
@@ -9,12 +9,12 @@ type Props = {
 };
 
 const NoteCreate = ({ addNewNote, setShowAddNote }: Props) => {
-  const [title, setTitle] = useState<string>();
-  const [body, setBody] = useState<string>();
+  const titleRef = useRef<HTMLInputElement>(null);
+  const bodyRef = useRef<HTMLTextAreaElement>(null);
   const newNote: NoteType = {
     id: uuid(),
-    title: title!,
-    body: body,
+    title: titleRef.current?.value!,
+    body: bodyRef.current?.value,
     modefiedAt: Date.now(),
   };
   return (
@@ -23,8 +23,7 @@ const NoteCreate = ({ addNewNote, setShowAddNote }: Props) => {
       <input
         type="text"
         id="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        ref={titleRef}
         required
         className=" w-3/5 py-1 px-2 rounded-lg"
       />
@@ -35,11 +34,12 @@ const NoteCreate = ({ addNewNote, setShowAddNote }: Props) => {
         className=" w-3/5 py-1 px-2 rounded-lg"
         rows={10}
         maxLength={600}
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
+        ref={bodyRef}
       ></textarea>
       <button
         onClick={() => {
+          console.log(titleRef.current?.value);
+
           addNewNote(newNote);
           setShowAddNote(false);
         }}
