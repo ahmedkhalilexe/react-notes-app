@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Note from "./components/Note";
 import NoteCreate from "./components/NoteCreate";
 import NotePreview from "./components/NotePreview";
@@ -24,13 +24,19 @@ export default function Home() {
   const [previewedNote, setPreviewedNote] = useState<NotePreviewType>();
 
   const addNewNote = (note: NoteType) => {
-    setNotes([note, ...notes]);
+    const newNotes = [note, ...notes];
+    setNotes(newNotes);
+    window.localStorage.setItem("notes", JSON.stringify(newNotes));
   };
   const previewNote = (note: NotePreviewType) => {
     setPreviewedNote(note);
     setShowAddNote(false);
     setShowPreviewNote(true);
   };
+  useEffect(() => {
+    const notesLog = window.localStorage.getItem("notes");
+    setNotes(JSON.parse(notesLog!));
+  }, []);
   return (
     <main className=" flex h-screen overflow-hidden">
       {/* side bar */}
