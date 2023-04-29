@@ -17,6 +17,7 @@ export default function Home() {
   const deleteNote = (noteId: string) => {
     const newNotes = notes.filter((note) => note.id !== noteId);
     setNotes(newNotes);
+    setShowPreviewNote(false);
     window.localStorage.setItem("notes", JSON.stringify(newNotes));
   };
   const [notes, setNotes] = useState<Array<NoteType>>([]);

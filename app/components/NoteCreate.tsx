@@ -11,12 +11,6 @@ type Props = {
 const NoteCreate = ({ addNewNote, setShowAddNote }: Props) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);
-  const newNote: NoteType = {
-    id: uuid(),
-    title: titleRef.current?.value!,
-    body: bodyRef.current?.value,
-    modefiedAt: Date.now(),
-  };
   return (
     <form
       className="flex flex-col"
