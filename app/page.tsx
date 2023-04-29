@@ -51,7 +51,7 @@ export default function Home() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            onClick={() => setShowAddNote(true)}
+            onClick={() => setShowAddNote(!showAddNote)}
             className="w-7 h-7 text-orange-400 cursor-pointer"
           >
             <path
