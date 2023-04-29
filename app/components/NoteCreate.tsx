@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { NoteType } from "./page";
+import { NoteType } from "../page";
 import uuid from "react-uuid";
 
 type Props = {
@@ -31,20 +31,24 @@ const NoteCreate = ({ addNewNote, setShowAddNote }: Props) => {
         setShowAddNote(false);
       }}
     >
-      <label htmlFor="title">Title</label>
+      <label htmlFor="title" className=" text-lg font-medium">
+        Title
+      </label>
       <input
         type="text"
         id="title"
         ref={titleRef}
         required
         placeholder="Title..."
-        className=" w-3/5 py-1 px-2 rounded-lg"
+        className=" w-3/5 mb-2 mt-1 py-2 px-4 focus:outline-orange-400 rounded-lg"
       />
-      <label htmlFor="body">Body</label>
+      <label htmlFor="body" className=" text-lg font-medium">
+        Body
+      </label>
       <textarea
         name="body"
         id="body"
-        className=" w-3/5 py-1 px-2 rounded-lg"
+        className=" w-3/5  mb-2 mt-1 py-2 px-4 focus:outline-orange-400 rounded-lg"
         rows={10}
         maxLength={600}
         ref={bodyRef}
